@@ -1,7 +1,7 @@
 var express = require("express"),
     app = express(),
     http = require("http"),
-    server = http.createServer(app);
+    server = http.createServer(app),
     mongoose = require('mongoose');
 
 app.configure(function () {
@@ -13,6 +13,8 @@ app.configure(function () {
 app.get('/', function(req, res) {
   res.send("Hello world!");
 });
+
+var routes = require('./routes/tvshows')(app);
 
 mongoose.connect('mongodb://localhost/tvshows', function(err, res) {
   if(err) {
